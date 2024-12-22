@@ -9,13 +9,13 @@ RUN npm install -g pm2
 WORKDIR /usr/src/app
 
 # Copiar package.json e package-lock.json para o container
-COPY backend/package*.json ./
+COPY package*.json ./
 
-# Instalar dependências
-RUN npm install
+# Limpar cache do NPM, instalar dependências com otimização e corrigir pacotes desatualizados
+RUN npm cache clean --force && npm install --legacy-peer-deps --no-audit --progress=false && npm audit fix --force
 
 # Copiar o restante do código da aplicação
-COPY backend .
+COPY . .
 
 # Expor a porta que a aplicação utiliza (ajuste conforme necessário)
 EXPOSE 3000
