@@ -1,29 +1,36 @@
 
-# Combined Application for Backend and Frontend
+# Unified Application for Backend and Frontend with Docker
 
-## Installation and Setup
+## Installation Instructions
 
 ### Prerequisites
-- Docker installed on your machine.
+- Docker installed on your system.
 - Docker Compose installed.
 
-### Steps to Run the Application
-1. Clone the repository or download the files.
-2. Navigate to the directory containing the `docker-compose.yml` file.
-3. Run the following command to start the application:
+### Steps to Set Up
+1. Clone or download the repository.
+2. Navigate to the root directory of the project (where the `docker-compose.yml` is located).
+3. Run the following command to build and start all services:
    ```bash
    docker-compose up --build
    ```
-4. Access the application:
-   - Backend: `http://localhost:3000`
-   - Frontend: `http://localhost`
 
-### Environment Variables
-- Backend:
-  - `NODE_ENV`: Set to `production`.
-- Frontend:
-  - `REACT_APP_API_URL`: Set to `http://localhost:3000/api` (already configured).
+### Accessing the Application
+- **Backend**: Accessible at `http://localhost:3000`.
+- **Frontend**: Accessible at `http://localhost`.
 
-### Notes
-- The application uses PostgreSQL as the database, with data persistence enabled.
-- To scale the backend, adjust the `replicas` in the `docker-compose.yml` file.
+### Configuration
+- Backend and Frontend are configured to run with scalable setups using PM2 and Nginx.
+- PostgreSQL is used as the database.
+
+### Scaling the Backend
+To scale backend services:
+1. Open `docker-compose.yml`.
+2. Adjust the `replicas` under the backend service.
+
+### Troubleshooting
+- Ensure all dependencies like Docker and Docker Compose are correctly installed.
+- Use the following command to check logs:
+   ```bash
+   docker-compose logs
+   ```
