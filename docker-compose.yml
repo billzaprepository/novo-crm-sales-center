@@ -4,7 +4,8 @@ version: '3.8'
 services:
   backend:
     build:
-      context: ./backend
+      context: .
+      dockerfile: Dockerfile-backend
     ports:
       - "3000:3000"
     environment:
@@ -18,15 +19,14 @@ services:
           cpus: "1.0"
           memory: "1g"
       replicas: 4
-    volumes:
-      - ./backend:/usr/src/app
     restart: always
     depends_on:
       - db
 
   frontend:
     build:
-      context: ./frontend
+      context: .
+      dockerfile: Dockerfile-frontend
     ports:
       - "80:80"
     depends_on:
