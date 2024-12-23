@@ -1,5 +1,5 @@
 
-# Dockerfile para o Backend
+# Use uma imagem oficial do Node.js
 FROM node:18
 
 # Instalar PM2 globalmente
@@ -11,8 +11,8 @@ WORKDIR /usr/src/app
 # Copiar arquivos de dependências
 COPY backend/package*.json ./
 
-# Instalar dependências
-RUN npm install --legacy-peer-deps
+# Instalar dependências e lidar com possíveis falhas
+RUN npm install --legacy-peer-deps || npm install --legacy-peer-deps --force
 
 # Copiar o restante do código do backend
 COPY backend ./
@@ -20,5 +20,5 @@ COPY backend ./
 # Expor a porta usada pelo backend
 EXPOSE 3000
 
-# Comando para iniciar a aplicação
+# Iniciar o servidor
 CMD ["pm2-runtime", "start", "ecosystem.config.js"]
