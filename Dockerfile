@@ -11,7 +11,7 @@ WORKDIR /usr/src/app
 # Copiar arquivos de dependências
 COPY backend/package*.json ./
 
-# Instalar dependências e garantir core-js atualizado
+# Instalar dependências e corrigir core-js para a versão mais recente
 RUN npm install --legacy-peer-deps && npm install core-js@^3.23.3 --save
 
 # Copiar o restante do código do backend
